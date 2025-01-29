@@ -1,0 +1,339 @@
+@font-face {
+    src: url("../stylse/fonts/ferry_black.otf");
+    font-family: ferry_black;
+}
+
+@font-face {
+    src: url("../stylse/fonts/Inter-Regular.otf");
+    font-family: Inter-Regular;
+}
+
+.auth {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 80px;
+}
+
+.auth-explanation {
+    width: 817px;
+    height: 144px;
+    margin-top: 162px;
+    font-family: ferry_black;
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 48px;
+    letter-spacing: 0.02em;
+    text-align: left;
+}
+
+.bunner-auth {
+    width: 321.76px;
+    height: 342.03px;
+    margin-top: 14px;
+    margin-left: 112px;
+}
+
+.auth-block {
+    width: 480px;
+    height: 578px;
+    margin-top: 107px;
+}
+
+.auth-form {
+    width: 429px;
+    height: 523px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 55px;
+    margin-left: 51px;
+    border: 1px solid #C7C7C7;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 0px #00000026;
+}
+
+.auth-actions {
+    width: 379px;
+    height: 29px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.auth-login {
+    width: 151px;
+    height: 29px;
+    border-bottom: #029491 solid 2px;
+    text-align: center;
+    color: #029491;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.36px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+}
+
+.auth-register {
+    width: 213px;
+    height: 29px;
+    border-bottom: #C7C7C7 solid 2px;
+    text-align: center;
+    color: #C7C7C7;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.36px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+}
+
+.login-form {
+    width: 379px;
+    height: 174px;
+    margin-top: 40px;
+
+}
+
+.login-form p {
+    margin: 0px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.36px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    color: #949494;
+}
+
+.login-form input {
+    width: 379px;
+    height: 43px;
+    padding: 0px 0px 0px 19px;
+    border-radius: 5px;
+    border: 1px solid #C7C7C7;
+    box-shadow: 0px 0px 20px 0px #0000000D;
+    box-sizing: border-box;
+}
+
+.login-form input[type="text"], .login-form input[type="password"] {
+    font-family: Inter-Regular;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.36px;
+    letter-spacing: 0.01em;
+    text-align: left;
+}
+
+.login-form input:focus {
+    outline: 1px solid #C7C7C7;
+    border-color: #C7C7C7;
+    padding: 0px 0px 0px 19px;
+    box-shadow: 0px 0px 20px 0px #0000000D;
+    box-sizing: border-box;
+}
+
+.input-login {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.input-password {
+    margin-top: 15px;
+}
+
+.login-but {
+    width: 379px;
+    height: 59px;
+    margin-top: 30px;
+    border-radius: 5px;
+    border: none;
+    opacity: 50%;
+    background: #5970FF;
+    color: #FFFFFF;
+    font-family: Inter-Regular;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 26.63px;
+    letter-spacing: 0.02em;
+    text-align: center;
+    cursor: pointer;
+}
+
+.login-but-active {
+    width: 379px;
+    height: 59px;
+    margin-top: 30px;
+    border-radius: 5px;
+    border: none;
+    opacity: 100%;
+    background: #5970FF;
+    color: #FFFFFF;
+    font-family: Inter-Regular;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 26.63px;
+    letter-spacing: 0.02em;
+    text-align: center;
+    cursor: pointer;
+}
+
+.auth-recover {
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 15px;
+    line-height: 16.94px;
+    letter-spacing: 0.02em;
+    color: #5970FF;
+    text-underline-position: from-font;
+}
+
+.auth-socialnet {
+    width: 308px;
+    height: 65px;
+    margin: 30px 96px 0px 25px;
+}
+
+.auth-socialnet p {
+    margin: 0px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.36px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    color: #949494;
+}
+
+.networks {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.networks button {
+    width: 96px;
+    height: 31px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    border: 1px solid #5970FF82;
+    background: #FFFFFF;
+    cursor: pointer;
+}
+
+.auth-imglock {
+    width: 75.22px;
+    height: 92.06px;
+    position: absolute;
+    z-index: 1px;
+}
+
+@media (max-width: 768px) {
+    .auth {
+        max-width: 375px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 80px;
+    }
+
+    .auth-block {
+        width: 335px;
+        height: 585px;
+        margin-top: 45px;
+    }
+
+    .auth-explanation {
+        width: 361px;
+        height: 104px;
+        margin-top: 124px;
+        margin-left: 14px;
+        font-size: 22px;
+        line-height: 26.4px;
+    }
+
+    .auth-actions {
+        width: 305px;
+    }
+
+    .bunner-auth {
+        display: none;
+    }
+
+    .auth-form {
+        width: 335px;
+        height: 504px;
+        margin: 75px auto 0px auto;
+    }
+
+    .auth-actions {
+        width: 305px;
+    }
+
+    .auth-login {
+        width: 103px;
+        font-size: 14px;
+        line-height: 16.94px;
+    }
+    
+    .auth-register {
+        width: 182px;
+        font-size: 14px;
+        line-height: 16.94px;
+    }
+
+    .login-form {
+        width: 305px;
+        height: 170px;
+        margin-top: 40px;
+    
+    }
+
+    .login-form p {
+        font-size: 14px;
+        line-height: 16.94px;
+    }
+    
+    .login-form input {
+        width: 305px;
+        height: 43px;
+    }
+
+    .login-form input[type="text"], .login-form input[type="password"] {
+        font-size: 14px;
+        line-height: 16.94px;
+    }
+
+    .login-but-active {
+        width: 305px;
+        height: 59px;
+        font-size: 20px;
+        line-height: 24.2px;
+    }
+
+    .login-but {
+        width: 305px;
+        height: 59px;
+        font-size: 20px;
+        line-height: 24.2px;
+    }
+
+    .auth-socialnet {
+        width: 308px;
+        height: 65px;
+        margin: 30px auto 0px auto;
+    }
+
+    .auth-imglock {
+        width: 75.22px;
+        height: 92.06px;
+        margin-left: 81px;
+        position: absolute;
+        z-index: 1px;
+    }
+
+}
