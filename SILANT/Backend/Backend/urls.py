@@ -17,6 +17,14 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include, re_path
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('App.urls')),
+]
+
+# Мусор, уберу позже )
+
 # from django.views.generic import TemplateView
 
 # from rest_framework import routers
@@ -56,11 +64,6 @@ from django.urls import path, include, re_path
 #    permission_classes=(permissions.AllowAny,),
 # )
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('App.urls')),
-]
-
 # urlpatterns = [
 #     path('admin/', admin.site.urls),
 #     path('api/', include(router.urls)),
@@ -88,5 +91,3 @@ urlpatterns = [
 # urlpatterns += [
 #     path('api/users/groups/', UserGroupsView.as_view(), name='user-groups'),
 # ]
-
-# Ссылки -/swagger.json и /swagger.yaml для вывода схемы API в формате JSON и YAML
