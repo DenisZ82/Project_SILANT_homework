@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'App',
     'rest_framework',
+    'rest_framework.authtoken',
     'rest_framework_simplejwt',
     # 'rest_framework_simplejwt.token_blacklist',
     'dj_rest_auth',
@@ -63,40 +64,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
 ]
-
-CORS_ALLOW_ALL_ORIGINS = False
-CORS_URLS_REGEX = r'^/api/.*$'
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://127.0.0.1:8000",
-]
-
-CORS_EXPOSE_HEADERS = [
-    "Set-Cookie"
-]
-
-# CORS_ALLOW_METHODS = [
-#     'DELETE',
-#     'GET',
-#     'OPTIONS',
-#     'PATCH',
-#     'POST',
-#     'PUT',
-# ]
-#
-# CORS_ALLOW_HEADERS = [
-#     'accept',
-#     'accept-encoding',
-#     'authorization',
-#     'content-type',
-#     'dnt',
-#     'origin',
-#     'user-agent',
-#     'x-csrftoken',
-#     'x-requested-with',
-# ]
 
 ROOT_URLCONF = 'Backend.urls'
 
@@ -122,13 +89,6 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
-
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
-ACCOUNT_EMAIL_REQUIRED = False
-ACCOUNT_EMAIL_VERIFICATION = 'none'
-ACCOUNT_USERNAME_REQUIRED = True
-ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
-ACCOUNT_ALLOW_REGISTRATION = False
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -184,16 +144,30 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 APPEND_SLASH = False
 
-# SWAGGER_SETTINGS = {
-#     'VALIDATOR_URL': 'http://localhost:8189',
-# }
-
 # CSRF_COOKIE_HTTPONLY = False
 # CSRF_COOKIE_SECURE = False
 # CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
 # SESSION_COOKIE_SAMESITE = 'Lax'
 # SESSION_COOKIE_SECURE = True
 # SESSION_COOKIE_HTTPONLY = False
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
+ACCOUNT_ALLOW_REGISTRATION = False
+
+# настройки corsheaders
+
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_URLS_REGEX = r'^/api/.*$'
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:8000",
+]
 
 REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES': [
@@ -204,17 +178,19 @@ REST_FRAMEWORK = {
     ],
 }
 
+# настройки rest_framework_simplejwt
+
 SIMPLE_JWT = {
-    'ROTATE_REFRESH_TOKENS': False,
-    'BLACKLIST_AFTER_ROTATION': False,
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
-
-    'ALGORITHM': 'HS512',
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': False,
+    'UPDATE_LAST_LOGIN': True,
     'SIGNING_KEY': SECRET_KEY,
+    'ALGORITHM': 'HS512',
 
-    'AUTH_HEADER_TYPES': ('Bearer',),
-    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
+    # 'AUTH_HEADER_TYPES': ('Bearer',),
+    # 'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
     # 'USER_ID_FIELD': 'id',
     # 'USER_ID_CLAIM': 'user_id',
 
@@ -223,9 +199,14 @@ SIMPLE_JWT = {
     # 'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=7),
 }
 
+# настройки dj_rest_auth
+
 REST_AUTH = {
     'USE_JWT': True,
     'JWT_AUTH_HTTPONLY': False,
-    'TOKEN_MODEL': None,
+    # 'TOKEN_MODEL': None,
 }
 
+# SWAGGER_SETTINGS = {
+#     'VALIDATOR_URL': 'http://localhost:8189',
+# }
