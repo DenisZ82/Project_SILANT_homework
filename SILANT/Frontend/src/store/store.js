@@ -28,11 +28,11 @@ class Store {
         this.setLoading(true);
         try {
             const response = await AuthService.login(username, password);
-            console.log(response);
+            console.log('login-response - store.js:', response);
             localStorage.setItem('token', response.data.accessToken);
             this.setAuth(true);
         } catch (e) {
-            console.log(e.response?.data?.message);
+            console.log('login-message - store.js:', e.response?.data?.message);
             alert(`${e.response?.data?.message} Повторите попытку входа.`);
             this.setLoading(false);
         }
@@ -43,7 +43,7 @@ class Store {
             const response = await AuthService.logout();
             localStorage.removeItem('token');
             this.setAuth(false);
-            console.log(response);
+            console.log('logout-response', response);
         } catch (e) {
             console.log(e.response?.data?.message);
         }
