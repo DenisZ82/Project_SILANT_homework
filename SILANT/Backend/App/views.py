@@ -25,13 +25,13 @@ class UserViewset(viewsets.ModelViewSet):
 class ClientViewset(viewsets.ModelViewSet):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    # permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class ServiceCompanyViewset(viewsets.ModelViewSet):
     queryset = ServiceCompany.objects.all()
     serializer_class = ServiceCompanySerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    # permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class ReferenceBooksViewset(viewsets.ModelViewSet):

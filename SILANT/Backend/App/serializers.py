@@ -1,5 +1,6 @@
-from rest_framework import serializers
 from django.contrib.auth.models import Group
+from rest_framework import serializers
+from dj_rest_auth.serializers import UserDetailsSerializer
 
 from .models import *
 
@@ -7,27 +8,53 @@ from .models import *
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
-        fields = ['id', 'name']
+        fields = ['name']
+
+
+class ClientSerializer(serializers.ModelSerializer):
+    user_id = serializers.IntegerField(source='user.id', read_only=True)
+
+    class Meta:
+        model = Client
+        fields = ['id', 'user_id', 'name_company']
+
+
+class ServiceCompanySerializer(serializers.ModelSerializer):
+    user_id = serializers.IntegerField(source='user.id', read_only=True)
+
+    class Meta:
+        model = ServiceCompany
+        fields = ['id', 'user_id', 'name_company', 'description']
 
 
 class UserSerializer(serializers.ModelSerializer):
     group_name = GroupSerializer(source='groups', many=True, read_only=True)
+    client = ClientSerializer(source='name_company', many=True, read_only=True)
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'group_name']
+        fields = ['id', 'username', 'group_name', 'client']
 
 
-class ClientSerializer(serializers.ModelSerializer):
+class CustomUserDetailsSerializer(UserDetailsSerializer):
+    group_name = serializers.SerializerMethodField()
+    client = serializers.SerializerMethodField()
+    service = serializers.SerializerMethodField()
+
     class Meta:
-        model = ServiceCompany
-        fields = ['id', 'name_company']
+        model = User
+        fields = ['pk', 'username', 'email', 'first_name', 'last_name', 'group_name', 'client', 'service']
 
+    def get_group_name(self, obj):
+        return list(obj.groups.values_list('name', flat=True))  # Преобразуем QuerySet в список
 
-class ServiceCompanySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ServiceCompany
-        fields = ['id', 'name_company', 'description']
+    def get_client(self, obj):
+        client = Client.objects.filter(user=obj).first()  # Ищем объект Client по user
+        return client.name_company if client else None  # Если найден - возвращаем, иначе None
+
+    def get_service(self, obj):
+        service = ServiceCompany.objects.filter(user=obj).first()  # Ищем объект ServiceCompany по user
+        return service.name_company if service else None  # Если найден - возвращаем, иначе None
 
 
 class ReferenceBooksSerializer(serializers.ModelSerializer):
@@ -42,7 +69,7 @@ class MachineSerializer(serializers.ModelSerializer):
     transmission_model = ReferenceBooksSerializer()
     drive_axle_model = ReferenceBooksSerializer()
     guiding_bridge_model = ReferenceBooksSerializer()
-    client = UserSerializer()
+    client = ClientSerializer()
     service_company = ServiceCompanySerializer()
 
     class Meta:
