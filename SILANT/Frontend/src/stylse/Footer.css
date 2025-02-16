@@ -1,9 +1,33 @@
+@font-face {
+    src: url('../stylse/fonts/PT-Astra-Sans_Bold.ttf');
+    font-family: PT-Astra-Sans_Bold;
+}
+
 .footer {
     display: flex;
     justify-content: space-between;
-    height: 137px;
+    align-items: center;
+    height: 200px;
+    margin-top: 50px;
     bottom: 0px;
-    background: #029491;
+    position: relative;
+    background: #163E6C;
+}
+
+.footer-contact {
+    display: flex;
+    font-family: PT-Astra-Sans_Bold;
+    color:#FFFFFF;
+}
+
+.footer-contact a {
+    text-decoration: none;
+    color:#FFFFFF;
+}
+
+.footer-contact img {
+    margin-left: 5px;
+    margin-bottom: 2px;
 }
 
 .footer-info {
@@ -43,6 +67,7 @@
 
 .footer-img {
     margin-left: 60px;
+    max-width: 350px;
 }
 
 @media (max-width: 768px) {

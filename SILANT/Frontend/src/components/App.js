@@ -19,7 +19,7 @@ function App() {
     return(
         <>
             <Header />
-            <div>
+            <>
                 <Routes>
                     <Route path="/" element={<Main />} />
                     <Route path="/auth" element={<AuthForm />} />
@@ -33,7 +33,7 @@ function App() {
                     } */}
                     <Route path="/" element={<Main />} />
                 </Routes>
-            </div>
+            </>
             <Footer />
         </>
 

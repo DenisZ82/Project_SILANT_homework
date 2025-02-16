@@ -3,19 +3,61 @@ import { Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 
 import { Context } from "../index.js";
+import axios from 'axios';
 import $api from "../http/index_http.js";
+import { API_URL } from "../http/index_http.js";
 import DeviceDetect from "./DeviceDetect.js";
 
 import "../stylse/Header.css";
+import header_logo from "../images/logo.svg"
 import header_avatar from "../images/header_avatar.svg";
 import rotation_animate from "../images/rotation_animate.svg"
 import mobile_menu from "../images/mobile_menu.svg"
+import telegram_white from "../images/telegram_white.svg"
+import telegram_dark_blue from "../images/telegram_dark_blue.svg"
+
 
 function Header() {
     const {store} = useContext(Context);
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
     const { isMobile } = DeviceDetect();
+
+    useEffect(() => {
+        if (store.isAuth) {
+            console.log('store.isUser: ', store.isUser)
+            console.log('store.isAuth: ', store.isAuth)
+        }
+    }, [store.isAuth])
+
+    const dataUser = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const config = {headers: { Authorization: `Bearer ${token}` } };
+            const response = await axios.get(`${API_URL}/auth/user/`, config);
+            console.log('Header response.data: ', response.data);
+            setUser(response.data);
+        } catch (error) {
+            console.log(error);
+            if (error.response.status == 401) {
+                alert(`Авторизуйтесь повторно`);
+            } else {
+                alert(`Авторизация прошла успешно`);
+            }
+
+
+        }
+    }
+
+    useEffect(() => {
+        // '/info'     '/user/'
+        if (store.isAuth) {
+            dataUser();
+            setTimeout(() => {
+                setLoading(false);
+            }, 1000);
+        }
+    }, [store.isAuth]);
 
 
     // useEffect(() => {
@@ -31,51 +73,54 @@ function Header() {
     //     }
     // }, [store.isAuth]);
 
+    
+
     return (
         <header className="header">
-            <img className="header-img" alt="Логотип"/>
+            <div className="header-title">
+            <a href="/"><img className="header-img" src={header_logo} alt="Логотип"/></a>
+            <div className="title-txt">Электронная сервисная книжка "Мой Силант"</div>
+            </div>
             { !isMobile ? 
-            <nav className="header-nav">
-                <ul className="header-ul">
-                    <li><a href="/">Главная</a></li>
-                    <li><a href="#">Тарифы</a></li>
-                    <li><a href="#">FAQ</a></li>
-                </ul>
-            </nav> : 
+            <div className="header-contact">
+                <div>+7-8352-20-12-09, <a href="https://t.me/Silant_chzsa">Telegram</a></div>
+                <a href="https://t.me/Silant_chzsa"><img src={telegram_dark_blue} alt="Телеграм"/></a>
+            </div> : 
             <div></div>
             }
 
             { !store.isAuth ? 
                 (!isMobile ?
-                (<div className="header-reg">
-                    <div className="header-register"><a href="#">Зарегистрироваться</a></div>
-                    <div className="header-line"></div>
+                (<div className="header-auth">
                     <Link to={"/auth"}>
-                        <button className="header-but">Войти</button>
+                        <button className="header-but">Авторизация</button>
                     </Link>
                 </div>) : <img className="mobile-menu" src={mobile_menu} />) : 
-
                 <div className="header-logged">
-                    <div className="header-limit">
+                    <div className="header-user">
                         { loading ? 
                             <img className="rotation_small" src={ rotation_animate }/> : 
-                            <><div className="limit-used">Username пользователя: 
-                                <span>username</span></div>
-                            <div className="limit-available">Название компании: 
-                                <span>Компания ООО</span></div>
-                            <div className="limit-available">Группа пользователей: 
-                                <span>Название группы</span></div></>
+                            <>
+                            { user.client || user.service ? 
+                                <div className="available">Компания: 
+                                <span>{user.client ? user.client : user.service}</span></div> :
+                                null
+                            }
+                            <div className="available">Группа: 
+                                <span>{user.group_name}</span></div>
+                            </>
                         }
                     </div>
                     { !isMobile ? 
-                    (<div className="header-user">
-                        <div>
-                            <div className="header-username">Алексей А.</div>
-                            <Link to={'/'} className="header-logout" onClick={() => store.logout()} >
-                                Выйти
+                    (<div className="header-username">
+
+                        <div className="username"><span>{user.username}</span></div>
+                            {/* <div className="header-username">User id: {store.isUser.pk}</div> */}
+                            <Link to={'/'} onClick={() => store.logout()} >
+                                <button className="header-logout">Выход</button>
                             </Link>
-                        </div>
-                        <img src={ header_avatar }/>
+
+
                     </div>) : <img className="mobile-menu" src={mobile_menu} />
                     }
                 </div>

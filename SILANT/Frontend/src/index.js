@@ -1,6 +1,7 @@
 import React, { createContext } from "react";
 import ReactDom from "react-dom/client";
 import { BrowserRouter } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import App from "./components/App";
 import Store from "./store/store.js";
