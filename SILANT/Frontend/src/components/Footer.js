@@ -12,12 +12,7 @@ function Footer() {
                 <a href="https://t.me/Silant_chzsa"><img src={telegram_white} alt="Телеграм"/></a>
             </div>
             <div className="footer-info">
-                <div className="footer-address">
-                    <p>г. Москва, Цветной б-р, 40</p>
-                    <p>+7 495 771 21 11</p>
-                    <p>info@skan.ru</p>
-                </div>
-                <div className="copyright">Copyright. 2022</div>
+                <div className="copyright">© Мой Силант, 2022</div>
             </div>
 
         </footer>

@@ -22,13 +22,9 @@ function AuthForm() {
                 <img className="auth-imglock" src={ auth_lock }/>
 
                 <div className="auth-form">
-                    <div className="auth-actions">
-                        <div className="auth-login">Войти</div>
-                        <div className="auth-register">Зарегистрироваться</div>
-                    </div>
 
                     <form className="login-form">
-                        <p>Логин или номер телефона:</p>
+                        <p>Логин:</p>
                         <input 
                             className="input-login" 
                             type="text"
@@ -56,17 +52,6 @@ function AuthForm() {
                         </Link> : 
                         <button className={ "login-but" }>Войти</button>
                     }
-
-                    <a className="auth-recover" href="#">Восстановить пароль</a>
-
-                    <div className="auth-socialnet">
-                        <p>Войти через</p>
-                        <div className="networks">
-                            <button><img src={ auth_google } /></button>
-                            <button><img src={ auth_facebook } /></button>
-                            <button><img src={ auth_yandex } /></button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

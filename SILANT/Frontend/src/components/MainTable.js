@@ -29,7 +29,10 @@ function MainTable() {
 
     return (
         <div className="main-table">
-            <h1>Контент Main</h1>
+            <h1 className="main-table-title">
+                Проверьте комплектацию и технические характеристики техники Силант
+            </h1>
+            <div className="block-search"> </div>
             <Table striped bordered hover className="data-table">
                 <thead>
                     <tr>
@@ -48,15 +51,25 @@ function MainTable() {
                 <tbody>
                 {machines.map(machine => (
                     <tr key={machine.id}>
-                        <td>{machine.machine_model.name}</td>
+                        <td><Link to={`/reference/${machine.machine_model.id}`}>
+                            {machine.machine_model.name}
+                        </Link></td>
                         <td>{machine.factory_number}</td>
-                        <td>{machine.engine_model.name}</td>
+                        <td><Link to={`/reference/${machine.engine_model.id}`}>
+                            {machine.engine_model.name}
+                        </Link></td>
                         <td>{machine.engine_factory_num}</td>
-                        <td>{machine.transmission_model.name}</td>
+                        <td><Link to={`/reference/${machine.transmission_model.id}`}>
+                            {machine.transmission_model.name}
+                        </Link></td>
                         <td>{machine.factory_num_transmission}</td>
-                        <td>{machine.drive_axle_model.name}</td>
+                        <td><Link to={`/reference/${machine.drive_axle_model.id}`}>
+                            {machine.drive_axle_model.name}
+                        </Link></td>
                         <td>{machine.factory_num_drive_axle}</td>
-                        <td>{machine.guiding_bridge_model.name}</td>
+                        <td><Link to={`/reference/${machine.guiding_bridge_model.id}`}>
+                            {machine.guiding_bridge_model.name}
+                        </Link></td>
                         <td>{machine.factory_num_guiding_bridge}</td>
                     </tr>
                 ))}

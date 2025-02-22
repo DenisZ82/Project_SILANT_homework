@@ -1,0 +1,38 @@
+@font-face {
+    src: url('../stylse/fonts/PT-Astra-Sans_Bold.ttf');
+    font-family: PT-Astra-Sans_Bold;
+}
+
+.reference {
+    width: 70%;
+    height: 80vh;
+    margin-top: 93px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #EBE6D6;
+}
+
+.reference-h1 {
+    margin-top: 130px;
+    font-size: 2.3rem;
+    font-family: PT-Astra-Sans_Bold;
+    color: #163E6C;
+}
+
+.reference-h2 {
+    margin-top: 20px;
+    font-size: 2.1rem;
+    font-family: PT-Astra-Sans_Bold;
+    color: #163E6C;
+}
+
+.reference-content {
+    width: 100%;
+    margin-top: 40px;
+    padding: 20px 20px 20px 20px;
+    border: 1px solid #C7C7C7;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 0px #00000026;
+    background-color: #FFFFFF;
+
+}

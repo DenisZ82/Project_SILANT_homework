@@ -6,6 +6,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Main from "./Main";
 import AuthForm from "./AuthForm";
+import Reference from "./Reference"
 // import Search from "./Search";
 // import ResultsPage from "./ResultsPage.js";
 
@@ -32,6 +33,7 @@ function App() {
                         <Route path="/" element={<Main />} />
                     } */}
                     <Route path="/" element={<Main />} />
+                    <Route path="/reference/:id" element={<Reference />} />
                 </Routes>
             </>
             <Footer />

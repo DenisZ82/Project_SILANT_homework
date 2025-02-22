@@ -10,16 +10,15 @@ import DeviceDetect from "./DeviceDetect.js";
 
 import "../stylse/Header.css";
 import header_logo from "../images/logo.svg"
-import header_avatar from "../images/header_avatar.svg";
 import rotation_animate from "../images/rotation_animate.svg"
 import mobile_menu from "../images/mobile_menu.svg"
-import telegram_white from "../images/telegram_white.svg"
 import telegram_dark_blue from "../images/telegram_dark_blue.svg"
 
 
 function Header() {
     const {store} = useContext(Context);
     const [user, setUser] = useState({});
+    const [errorDataUser, setErrorDataUser] = useState(false);
     const [loading, setLoading] = useState(true);
     const { isMobile } = DeviceDetect();
 
@@ -40,17 +39,16 @@ function Header() {
         } catch (error) {
             console.log(error);
             if (error.response.status == 401) {
+                setErrorDataUser(true);
                 alert(`Авторизуйтесь повторно`);
             } else {
+                setErrorDataUser(false);
                 alert(`Авторизация прошла успешно`);
             }
-
-
         }
     }
 
     useEffect(() => {
-        // '/info'     '/user/'
         if (store.isAuth) {
             dataUser();
             setTimeout(() => {
@@ -58,22 +56,6 @@ function Header() {
             }, 1000);
         }
     }, [store.isAuth]);
-
-
-    // useEffect(() => {
-    //     // '/info'     '/user/'
-    //     if (store.isAuth) {
-    //         $api.get('/info').then(res => {
-    //             setUser(res.data.eventFiltersInfo);
-    //             console.log(res.data.eventFiltersInfo);
-    //             setTimeout(() => {
-    //                 setLoading(false);
-    //             }, 1000);
-    //         })
-    //     }
-    // }, [store.isAuth]);
-
-    
 
     return (
         <header className="header">
@@ -89,7 +71,7 @@ function Header() {
             <div></div>
             }
 
-            { !store.isAuth ? 
+            { !store.isAuth || errorDataUser ? 
                 (!isMobile ?
                 (<div className="header-auth">
                     <Link to={"/auth"}>
@@ -99,29 +81,32 @@ function Header() {
                 <div className="header-logged">
                     <div className="header-user">
                         { loading ? 
-                            <img className="rotation_small" src={ rotation_animate }/> : 
+                            (<div className="rotation-div">
+                                <img className="rotation-small" src={ rotation_animate }/>
+                            </div>) : 
                             <>
                             { user.client || user.service ? 
                                 <div className="available">Компания: 
                                 <span>{user.client ? user.client : user.service}</span></div> :
                                 null
                             }
-                            <div className="available">Группа: 
-                                <span>{user.group_name}</span></div>
+                            { user.client || user.service || user.group_name.includes('managers') ? 
+                                <div className="available">Группа: 
+                                <span>{user.group_name}</span></div> :
+                                null
+                            }
                             </>
                         }
                     </div>
                     { !isMobile ? 
                     (<div className="header-username">
-
                         <div className="username"><span>{user.username}</span></div>
                             {/* <div className="header-username">User id: {store.isUser.pk}</div> */}
                             <Link to={'/'} onClick={() => store.logout()} >
                                 <button className="header-logout">Выход</button>
                             </Link>
-
-
-                    </div>) : <img className="mobile-menu" src={mobile_menu} />
+                    </div>) : 
+                    <img className="mobile-menu" src={mobile_menu} />
                     }
                 </div>
             }

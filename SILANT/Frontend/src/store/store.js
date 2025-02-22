@@ -41,6 +41,7 @@ class Store {
             localStorage.setItem('user', JSON.stringify(response.data.user));
             this.setAuth(true);
             this.setUser(response.data.user);
+            console.log('usergroup: ', response.data.user.group_name)
         } catch (e) {
             console.log('login-message - store.js:', e.response?.data?.message);
             console.log(e);
