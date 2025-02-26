@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { observer } from "mobx-react-lite";
+import {Tabs , Tab} from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 
 import { MaterialReactTable, useMaterialReactTable, } from 'material-react-table';
@@ -11,143 +12,146 @@ import { Context } from "../index.js";
 import { API_URL } from "../http/index_http.js";
 
 import MainTableGeneral from "./MainTableGeneral.js";
+import MainTableMaintenance from "./MainTableMaintenance.js";
+import MainTableComplaints from "./MainTableComplaints.js";
 import "../stylse/Main.css"
 
 function MainTableAuth() {
-    const { store } = useContext(Context);
-    const [machines, setMachines] = useState([]);
+    const [key , setKey] = useState ('general');
+    // const { store } = useContext(Context);
+    // const [machines, setMachines] = useState([]);
 
     // определение столбцов для библиотеки material-react-table
-    const columns = useMemo(
-        () => [
-          {
-              accessorKey: "machine_model.name",
-              header: "Модель техники",
-              Cell: ({ row }) => (
-                <Link to={`/reference/${row.original.machine_model.id}`}>
-                  {row.original.machine_model.name}
-                </Link>
-              ),
-          },
-          {
-              accessorKey: "factory_number",
-              header: "Зав. № машины",
-          },
-          {
-              accessorKey: "engine_model.name",
-              header: "Модель двигателя",
-              Cell: ({ row }) => (
-                <Link to={`/reference/${row.original.engine_model.id}`}>
-                  {row.original.engine_model.name}
-                </Link>
-              ),
-          },
-          {
-              accessorKey: "engine_factory_num",
-              header: "Зав. № двигателя",
-          },
-          {
-              accessorKey: "transmission_model.name",
-              header: "Модель трансмиссии",
-              Cell: ({ row }) => (
-                <Link to={`/reference/${row.original.transmission_model.id}`}>
-                  {row.original.transmission_model.name}
-                </Link>
-              ),
-          },
-          {
-              accessorKey: "factory_num_transmission",
-              header: "Зав. № трансмиссии",
-          },
-          {
-              accessorKey: "drive_axle_model.name",
-              header: "Модель ведущего моста",
-              Cell: ({ row }) => (
-                <Link to={`/reference/${row.original.drive_axle_model.id}`}>
-                  {row.original.drive_axle_model.name}
-                </Link>
-              ),
-          },
-          {
-              accessorKey: "factory_num_drive_axle",
-              header: "Зав. № ведущего моста",
-          },
-          {
-              accessorKey: "guiding_bridge_model.name",
-              header: "Модель управляемого моста",
-              Cell: ({ row }) => (
-                <Link to={`/reference/${row.original.guiding_bridge_model.id}`}>
-                  {row.original.guiding_bridge_model.name}
-                </Link>
-              ),
-          },
-          {
-              accessorKey: "factory_num_guiding_bridge",
-              header: "Зав. № управляемого моста",
-          },
-          {
-              accessorKey: "delivery_agreement",
-              header: "Договор поставки №, дата",
-          },
-          {
-              accessorKey: "date_shipment_factory",
-              header: "Дата отгрузки с завода",
-          },
-          {
-              accessorKey: "consignee",
-              header: "Грузополучатель",
-          },
-          {
-              accessorKey: "shipping_address",
-              header: "Адрес поставки",
-          },
-          {
-              accessorKey: "equipment",
-              header: "Комплектация",
-          },
-          {
-              accessorKey: "client.name_company",
-              header: "Клиент",
-          },
-          {
-              accessorKey: "service_company.name_company",
-              header: "Сервисная компания",
-          },
-        ],
-        []
-      );
+    // const columns = useMemo(
+    //     () => [
+    //       {
+    //           accessorKey: "machine_model.name",
+    //           header: "Модель техники",
+    //           Cell: ({ row }) => (
+    //             <Link to={`/reference/${row.original.machine_model.id}`}>
+    //               {row.original.machine_model.name}
+    //             </Link>
+    //           ),
+    //       },
+    //       {
+    //           accessorKey: "factory_number",
+    //           header: "Зав. № машины",
+    //       },
+    //       {
+    //           accessorKey: "engine_model.name",
+    //           header: "Модель двигателя",
+    //           Cell: ({ row }) => (
+    //             <Link to={`/reference/${row.original.engine_model.id}`}>
+    //               {row.original.engine_model.name}
+    //             </Link>
+    //           ),
+    //       },
+    //       {
+    //           accessorKey: "engine_factory_num",
+    //           header: "Зав. № двигателя",
+    //       },
+    //       {
+    //           accessorKey: "transmission_model.name",
+    //           header: "Модель трансмиссии",
+    //           Cell: ({ row }) => (
+    //             <Link to={`/reference/${row.original.transmission_model.id}`}>
+    //               {row.original.transmission_model.name}
+    //             </Link>
+    //           ),
+    //       },
+    //       {
+    //           accessorKey: "factory_num_transmission",
+    //           header: "Зав. № трансмиссии",
+    //       },
+    //       {
+    //           accessorKey: "drive_axle_model.name",
+    //           header: "Модель ведущего моста",
+    //           Cell: ({ row }) => (
+    //             <Link to={`/reference/${row.original.drive_axle_model.id}`}>
+    //               {row.original.drive_axle_model.name}
+    //             </Link>
+    //           ),
+    //       },
+    //       {
+    //           accessorKey: "factory_num_drive_axle",
+    //           header: "Зав. № ведущего моста",
+    //       },
+    //       {
+    //           accessorKey: "guiding_bridge_model.name",
+    //           header: "Модель управляемого моста",
+    //           Cell: ({ row }) => (
+    //             <Link to={`/reference/${row.original.guiding_bridge_model.id}`}>
+    //               {row.original.guiding_bridge_model.name}
+    //             </Link>
+    //           ),
+    //       },
+    //       {
+    //           accessorKey: "factory_num_guiding_bridge",
+    //           header: "Зав. № управляемого моста",
+    //       },
+    //       {
+    //           accessorKey: "delivery_agreement",
+    //           header: "Договор поставки №, дата",
+    //       },
+    //       {
+    //           accessorKey: "date_shipment_factory",
+    //           header: "Дата отгрузки с завода",
+    //       },
+    //       {
+    //           accessorKey: "consignee",
+    //           header: "Грузополучатель",
+    //       },
+    //       {
+    //           accessorKey: "shipping_address",
+    //           header: "Адрес поставки",
+    //       },
+    //       {
+    //           accessorKey: "equipment",
+    //           header: "Комплектация",
+    //       },
+    //       {
+    //           accessorKey: "client.name_company",
+    //           header: "Клиент",
+    //       },
+    //       {
+    //           accessorKey: "service_company.name_company",
+    //           header: "Сервисная компания",
+    //       },
+    //     ],
+    //     []
+    //   );
 
-    const dataMachines = async () => {
-        try {
-            const response = await axios.get(`${API_URL}/machines/`);
-            console.log('response.data: ', response.data);
-            console.log('store.isUser.group_name: ', store.isUser.group_name);
+    // const dataMachines = async () => {
+    //     try {
+    //         const response = await axios.get(`${API_URL}/machines/`);
+    //         console.log('response.data: ', response.data);
+    //         console.log('store.isUser.group_name: ', store.isUser.group_name);
 
-            let userData = null;
-            if (store.isUser.group_name.includes('clients')) {
-                userData = response.data.filter(
-                    user => user.client.user_id === store.isUser.pk
-                );
-                console.log('Данные клиента получены');
-            } else if(store.isUser.group_name.includes('service')) {
-                userData = response.data.filter(
-                    user => user.service_company.user_id === store.isUser.pk
-                );
-                console.log('Данные сервисной компании получены');
-            } else {
-                userData = response.data;
-                console.log('Данные для менеджера получены');
-            }
+    //         let userData = null;
+    //         if (store.isUser.group_name.includes('clients')) {
+    //             userData = response.data.filter(
+    //                 user => user.client.user_id === store.isUser.pk
+    //             );
+    //             console.log('Данные клиента получены');
+    //         } else if(store.isUser.group_name.includes('service')) {
+    //             userData = response.data.filter(
+    //                 user => user.service_company.user_id === store.isUser.pk
+    //             );
+    //             console.log('Данные сервисной компании получены');
+    //         } else {
+    //             userData = response.data;
+    //             console.log('Данные для менеджера получены');
+    //         }
 
-            setMachines(userData);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    //         setMachines(userData);
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
 
-    useEffect (() => {
-        dataMachines();
-    }, []);
+    // useEffect (() => {
+    //     dataMachines();
+    // }, []);
 
     // console.log(columns);
     // console.log("Columns:", Array.isArray(columns));
@@ -228,10 +232,22 @@ function MainTableAuth() {
                 localization={MRT_Localization_RU}
                 />
             </div> */}
-
-            <MainTableGeneral />
-
-
+            <Tabs
+                id="controlled-tab-example"
+                className="custom-tabs"
+                activeKey={key}
+                onSelect={(k) => {setKey(k)}}
+            >
+                <Tab eventKey="general" title="Общая информация">
+                    {key === 'general' && <MainTableGeneral />}
+                </Tab>
+                <Tab eventKey="maintenance" title="ТО">
+                    {key === 'maintenance' && <MainTableMaintenance />}
+                </Tab>
+                <Tab eventKey="complaints" title="Рекламации">
+                    {key === 'complaints' && <MainTableComplaints />}
+                </Tab>
+            </Tabs>
         </div>
     );
 

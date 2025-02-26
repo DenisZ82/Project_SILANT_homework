@@ -1,17 +1,92 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useMemo, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import { observer } from "mobx-react-lite";
-import Table from 'react-bootstrap/Table';
+
+import { MaterialReactTable, } from 'material-react-table';
+import { MRT_Localization_RU } from 'material-react-table/locales/ru';
 
 import { Context } from "../index.js";
 import { API_URL } from "../http/index_http.js";
 
-import "../stylse/Main.css"
+import "../stylse/Main.css";
+// import '../stylse/fonts/PT-Astra-Sans_Regular.ttf';
 
 function MainTable() {
     const { store } = useContext(Context);
     const [machines, setMachines] = useState([]);
+
+    // определение столбцов для библиотеки material-react-table
+    const columns = useMemo(
+        () => [
+            {
+                accessorKey: "machine_model.name",
+                header: "Модель техники",
+                Cell: ({ row }) => (
+                  <Link to={`/reference/${row.original.machine_model.id}`}>
+                    {row.original.machine_model.name}
+                  </Link>
+                ),
+            },
+            {
+                accessorKey: "factory_number",
+                header: "Зав. № машины",
+            },
+            {
+                accessorKey: "engine_model.name",
+                header: "Модель двигателя",
+                Cell: ({ row }) => (
+                  <Link to={`/reference/${row.original.engine_model.id}`}>
+                    {row.original.engine_model.name}
+                  </Link>
+                ),
+            },
+            {
+                accessorKey: "engine_factory_num",
+                header: "Зав. № двигателя",
+            },
+            {
+                accessorKey: "transmission_model.name",
+                header: "Модель трансмиссии",
+                Cell: ({ row }) => (
+                  <Link to={`/reference/${row.original.transmission_model.id}`}>
+                    {row.original.transmission_model.name}
+                  </Link>
+                ),
+            },
+            {
+                accessorKey: "factory_num_transmission",
+                header: "Зав. № трансмиссии",
+            },
+            {
+                accessorKey: "drive_axle_model.name",
+                header: "Модель ведущего моста",
+                Cell: ({ row }) => (
+                  <Link to={`/reference/${row.original.drive_axle_model.id}`}>
+                    {row.original.drive_axle_model.name}
+                  </Link>
+                ),
+            },
+            {
+                accessorKey: "factory_num_drive_axle",
+                header: "Зав. № ведущего моста",
+            },
+            {
+                accessorKey: "guiding_bridge_model.name",
+                header: "Модель управляемого моста",
+                Cell: ({ row }) => (
+                  <Link to={`/reference/${row.original.guiding_bridge_model.id}`}>
+                    {row.original.guiding_bridge_model.name}
+                  </Link>
+                ),
+            },
+            {
+                accessorKey: "factory_num_guiding_bridge",
+                header: "Зав. № управляемого моста",
+            },
+          ],
+          []
+        );
 
     const data = async () => {
         try {
@@ -32,54 +107,34 @@ function MainTable() {
             <h1 className="main-table-title">
                 Проверьте комплектацию и технические характеристики техники Силант
             </h1>
-            <div className="block-search"> </div>
-            <Table striped bordered hover className="data-table">
-                <thead>
-                    <tr>
-                        <th>Модель техники</th>
-                        <th>Зав. № машины</th>
-                        <th>Модель двигателя</th>
-                        <th>Зав. № двигателя</th>
-                        <th>Модель трансмиссии</th>
-                        <th>Зав. № трансмиссии</th>
-                        <th>Модель ведущего моста</th>
-                        <th>Зав. № ведущего моста</th>
-                        <th>Модель управляемого <br/> моста</th>
-                        <th>Зав. № управляемого <br/> моста</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {machines.map(machine => (
-                    <tr key={machine.id}>
-                        <td><Link to={`/reference/${machine.machine_model.id}`}>
-                            {machine.machine_model.name}
-                        </Link></td>
-                        <td>{machine.factory_number}</td>
-                        <td><Link to={`/reference/${machine.engine_model.id}`}>
-                            {machine.engine_model.name}
-                        </Link></td>
-                        <td>{machine.engine_factory_num}</td>
-                        <td><Link to={`/reference/${machine.transmission_model.id}`}>
-                            {machine.transmission_model.name}
-                        </Link></td>
-                        <td>{machine.factory_num_transmission}</td>
-                        <td><Link to={`/reference/${machine.drive_axle_model.id}`}>
-                            {machine.drive_axle_model.name}
-                        </Link></td>
-                        <td>{machine.factory_num_drive_axle}</td>
-                        <td><Link to={`/reference/${machine.guiding_bridge_model.id}`}>
-                            {machine.guiding_bridge_model.name}
-                        </Link></td>
-                        <td>{machine.factory_num_guiding_bridge}</td>
-                    </tr>
-                ))}
-                </tbody>
-            </Table>
 
-
+            <div className="material-react-table">
+                <MaterialReactTable 
+                data={machines} 
+                columns={columns} 
+                initialState={{ 
+                    sorting: [{ id: 'machine_model.name', desc: false }, ],
+                    showColumnFilters: true,
+                    showGlobalFilter: true,
+                }}
+                localization={MRT_Localization_RU}
+                positionGlobalFilter="left"
+                globalFilterFn="contains"
+                muiSearchTextFieldProps={{
+                    placeholder: `Поисковый запрос`,
+                    sx: { minWidth: '150px' },
+                    variant: 'outlined',
+                }}
+                enableStickyHeader
+                muiTableContainerProps={{ sx: { maxHeight: '600px' } }}
+                muiTableHeadCellProps={{ sx: {fontSize:'17,5px',}, }}
+                muiTableBodyCellProps={{
+                    sx: {fontSize:'17,5px', borderRight:'1px solid #163E6C',},
+                }}
+                />
+            </div>
         </div>
     );
-
 }
 
 export default observer(MainTable);

@@ -5,7 +5,6 @@ class Store {
     isAuth = false;
     isLoading = false;
     isUser = null;
-    // isUser = [];
 
     constructor() {
         makeAutoObservable(this, {}, { autoBind: true });
@@ -17,7 +16,6 @@ class Store {
         this.isAuth = Boolean(token);
         const user = localStorage.getItem('user');
         this.isUser = user ? JSON.parse(user) : null;
-        // this.isUser = user ? Number(user) : null;
     }
 
     setAuth(bool) {

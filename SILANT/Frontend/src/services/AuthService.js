@@ -12,12 +12,6 @@ class AuthService {
                 'Accept': 'application/json'
             }
         })
-        // .then(function (response) {
-        //     console.log('response - AuthService.js:', response);
-        //   })
-        //   .catch(function (error) {
-        //     console.log('error - AuthService.js:', error);
-        //   });
     }
     
     static async logout() {

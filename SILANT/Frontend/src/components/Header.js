@@ -20,7 +20,7 @@ function Header() {
     const [user, setUser] = useState({});
     const [errorDataUser, setErrorDataUser] = useState(false);
     const [loading, setLoading] = useState(true);
-    const { isMobile } = DeviceDetect();
+    const { isMobile, isMobile360 } = DeviceDetect();
 
     useEffect(() => {
         if (store.isAuth) {
@@ -41,12 +41,18 @@ function Header() {
             if (error.response.status == 401) {
                 setErrorDataUser(true);
                 alert(`Авторизуйтесь повторно`);
+                store.logout();
             } else {
                 setErrorDataUser(false);
                 alert(`Авторизация прошла успешно`);
             }
         }
     }
+
+    useEffect (() => {
+        console.log('isMobile', isMobile)
+        console.log('isMobile360', isMobile360)
+    }, [isMobile, isMobile360]);
 
     useEffect(() => {
         if (store.isAuth) {
@@ -71,7 +77,7 @@ function Header() {
             <div></div>
             }
 
-            { !store.isAuth || errorDataUser ? 
+            { !store.isAuth ? 
                 (!isMobile ?
                 (<div className="header-auth">
                     <Link to={"/auth"}>
