@@ -110,6 +110,7 @@ class Complaints(models.Model):
     used_spare_parts = models.TextField(blank=True, null=True, verbose_name='Используемые запасные части')
     date_restoration = models.DateField(verbose_name='Дата восстановления')
     machine_downtime = models.IntegerField(editable=False, verbose_name='Время простоя техники')
+    service_company = models.ForeignKey(ServiceCompany, on_delete=models.RESTRICT, verbose_name='Сервисная компания')
 
     def __str__(self):
         return f"{self.machine_failure_node} - {self.date_machine_failure}"

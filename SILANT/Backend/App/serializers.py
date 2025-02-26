@@ -104,16 +104,18 @@ class MachineSerializer(serializers.ModelSerializer):
 
 
 class TechMaintenanceSerializer(serializers.ModelSerializer):
+    client = ClientSerializer(source='machine.client')
+    machine_model = ReferenceBooksSerializer(source='machine.machine_model')
     machine_factory_number = serializers.CharField(source='machine.factory_number')
     type_maintenance_name = serializers.CharField(source='type_maintenance.name')
     organization_maintenance = serializers.CharField(source='organization_maintenance.name')
     service_company = ServiceCompanySerializer()
-    # service_company = ServiceCompanySerializer(source='service_company')
 
     class Meta:
         model = TechMaintenance
         fields = [
             'id',
+            'machine_model',
             'machine_factory_number',
             'type_maintenance_name',
             'date_maintenance',
@@ -121,11 +123,14 @@ class TechMaintenanceSerializer(serializers.ModelSerializer):
             'order_number',
             'order_date',
             'organization_maintenance',
-            'service_company'
+            'service_company',
+            'client',
         ]
 
 
 class ComplaintsSerializer(serializers.ModelSerializer):
+    client = ClientSerializer(source='machine.client')
+    machine_model = ReferenceBooksSerializer(source='machine.machine_model')
     machine_factory_number = serializers.CharField(source='machine.factory_number')
     machine_failure_node = serializers.CharField(source='machine_failure_node.name')
     method_restoring = serializers.CharField(source='method_restoring.name')
@@ -135,6 +140,7 @@ class ComplaintsSerializer(serializers.ModelSerializer):
         model = Complaints
         fields = [
             'id',
+            'machine_model',
             'date_machine_failure',
             'operating_time',
             'description_machine_failure',
@@ -144,7 +150,8 @@ class ComplaintsSerializer(serializers.ModelSerializer):
             'machine_factory_number',
             'machine_failure_node',
             'method_restoring',
-            'service_company'
+            'service_company',
+            'client',
         ]
         read_only_fields = [
             'machine_factory_number',
