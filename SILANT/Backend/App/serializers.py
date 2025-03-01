@@ -40,10 +40,12 @@ class CustomUserDetailsSerializer(UserDetailsSerializer):
     group_name = serializers.SerializerMethodField()
     client = serializers.SerializerMethodField()
     service = serializers.SerializerMethodField()
+    assigned_service = serializers.SerializerMethodField()
 
     class Meta:
         model = User
-        fields = ['pk', 'username', 'email', 'first_name', 'last_name', 'group_name', 'client', 'service']
+        fields = ['pk', 'username', 'email', 'first_name', 'last_name', 'group_name', 'client', 'service',
+                  'assigned_service']
 
     def get_group_name(self, obj):
         return list(obj.groups.values_list('name', flat=True))  # Преобразуем QuerySet в список
@@ -55,6 +57,14 @@ class CustomUserDetailsSerializer(UserDetailsSerializer):
     def get_service(self, obj):
         service = ServiceCompany.objects.filter(user=obj).first()  # Ищем объект ServiceCompany по user
         return service.name_company if service else None  # Если найден - возвращаем, иначе None
+
+    #  Собираем все сервисные компании связанные с машинами клиента и передаем фронту
+    def get_assigned_service(self, obj):
+        assigned_service = set()
+        for machine in Machine.objects.filter(client__user=obj):
+            machine_ = machine.service_company.name_company
+            assigned_service.add(machine_ if machine_ else None)
+        return list(assigned_service)
 
 
 class ReferenceBooksSerializer(serializers.ModelSerializer):
