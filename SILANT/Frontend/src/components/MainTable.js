@@ -5,16 +5,19 @@ import { observer } from "mobx-react-lite";
 
 import { MaterialReactTable, } from 'material-react-table';
 import { MRT_Localization_RU } from 'material-react-table/locales/ru';
+import { ThemeProvider } from '@mui/material/styles';
 
-import { Context } from "../index.js";
+// import { Context } from "../index.js";
 import { API_URL } from "../http/index_http.js";
+import DeviceDetect from "./DeviceDetect.js";
 
+import theme from "./Theme.js";
 import "../stylse/Main.css";
-// import '../stylse/fonts/PT-Astra-Sans_Regular.ttf';
 
 function MainTable() {
-    const { store } = useContext(Context);
+    // const { store } = useContext(Context);
     const [machines, setMachines] = useState([]);
+    const { fontSizeTable } = DeviceDetect();
 
     // определение столбцов для библиотеки material-react-table
     const columns = useMemo(
@@ -105,10 +108,14 @@ function MainTable() {
     return (
         <div className="main-table">
             <h1 className="main-table-title">
-                Проверьте комплектацию и технические характеристики техники Силант
+                Проверьте комплектацию и технические характеристики техники Силант.
             </h1>
+            <p className="main-table-note">
+                Введите поисковый запрос в поле таблицы. Например, заводской номер машины.
+            </p>
 
             <div className="material-react-table">
+            <ThemeProvider theme={theme}>
                 <MaterialReactTable 
                 data={machines} 
                 columns={columns} 
@@ -127,11 +134,12 @@ function MainTable() {
                 }}
                 enableStickyHeader
                 muiTableContainerProps={{ sx: { maxHeight: '600px' } }}
-                muiTableHeadCellProps={{ sx: {fontSize:'17,5px',}, }}
+                muiTableHeadCellProps={{ sx: {fontSize:fontSizeTable,}, }}
                 muiTableBodyCellProps={{
-                    sx: {fontSize:'17,5px', borderRight:'1px solid #163E6C',},
+                    sx: {fontSize: fontSizeTable, borderRight:'1px solid #163E6C',},
                 }}
                 />
+            </ThemeProvider>
             </div>
         </div>
     );

@@ -8,11 +8,13 @@ function Footer() {
         <footer className="footer">
             <img className="footer-img" src={footer_logo} alt="Логотип"/>
             <div className="footer-contact">
-                <div>+7-8352-20-12-09, <a href="https://t.me/Silant_chzsa">Telegram</a></div>
+                <div>+7-8352-20-12-09, <a href="https://t.me/Silant_chzsa">Telegram</a>
                 <a href="https://t.me/Silant_chzsa"><img src={telegram_white} alt="Телеграм"/></a>
+                </div>
+                {/* <a href="https://t.me/Silant_chzsa"><img src={telegram_white} alt="Телеграм"/></a> */}
             </div>
             <div className="footer-info">
-                <div className="copyright">© Мой Силант, 2022</div>
+                <div className="footer-copyright">© Мой Силант, 2022</div>
             </div>
 
         </footer>

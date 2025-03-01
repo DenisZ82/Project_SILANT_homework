@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 function DeviceDetect() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [isMobile360, setIsMobile360] = useState(window.innerWidth <= 360);
+  const [fontSizeTable, setFontSizeTable] = useState('20px');
 
   useEffect(() => {
     // Отслеживаем изменение размера экрана здесь, моментально реагируя на любые его изменения
@@ -16,7 +17,18 @@ function DeviceDetect() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  return { isMobile, isMobile360 };
+  useEffect(() => {
+    if (isMobile) {
+      setFontSizeTable('17px');
+    } else if (isMobile360) {
+      setFontSizeTable('14px');
+    } else {
+      setFontSizeTable('20px')
+    }
+
+  }, [isMobile, isMobile360]);
+
+  return { isMobile, isMobile360, fontSizeTable };
 };
 
 export default DeviceDetect;

@@ -11,7 +11,7 @@
     top: 0;
     width: 100%;
     z-index: 1000;
-    height: 93px;
+    height: 110px;
     gap: 0px;
     background: #EBE6D6;
 }
@@ -56,14 +56,8 @@ p {
     justify-content: space-between;
     align-items: center;
     width: 180px ;
-    height: 26px;
-    margin-right: 131px;
-}
-
-
-.header-register a {
-    color: black;
-    text-decoration: none;
+    height: 50px;
+    margin-right: 120px;
 }
 
 .header-but {
@@ -91,7 +85,7 @@ p {
 
 .header-user {
     width: auto;
-    height: 63px;
+    height: 80px;
     margin-right: 20px;
     border-radius: 5px;
     background: #ececec;
@@ -100,18 +94,7 @@ p {
     /* align-items: center; */
     justify-content: center;
     font-size: 18px;
-    font-weight: 400;
-    line-height: 12.1px;
     text-align: left;
-}
-
-.limit-used {
-    width: 300px;
-    height: 17px;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    /* color: rgba(0, 0, 0, 0.4); */
 }
 
 .available {
@@ -121,16 +104,6 @@ p {
     display: flex;
     align-items: center;
     justify-content: left;
-    /* color: rgba(0, 0, 0, 0.4); */
-}
-
-.limit-used span {
-    margin-left: 9px;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 16.94px;
-    text-align: right;
-    color: #000000;
 }
 
 .available span {
@@ -211,13 +184,8 @@ p {
 
 @media (max-width: 768px) {
 
-    .mobile-menu {
-        margin-right: 26px;
-        margin-left: 31px;
-    }
-
     .header {
-        max-width: 375px;
+        max-width: 750px;
         margin: 0px auto 0px auto;
         display: flex;
         justify-content: space-between;
@@ -228,78 +196,72 @@ p {
         right: 0;
         width: 100%;
         z-index: 1000;
-        height: 93px;
+        height: 130px;
         gap: 0px;
-        background: #FFFFFF;
+        background: #EBE6D6;
+        line-height: 1;
     }
     
     .header-img {
-        margin-left: 14px;
-        width: 111px;
+        width: 140px;
+    }
+
+    .title-txt {
+        font-size: 18px;
+    }
+
+    .header-contact {
+        margin-top: 10px;
+        font-size: 16px;
+    }
+
+    .header-title {
+        margin-left: 30px;
+    }
+
+    .header-img {
+        width: 180px;
+    }
+
+    .header-contact img {
+        margin-left: 3px;
+        margin-bottom: 0px;
+        width: 20px;
+    }
+
+    .header-auth {
+        width: 130px ;
+        height: 40px;
+        margin-right: 30px;
+    }
+
+    .header-but {
+        width: 130px;
+        height: 40px;
+        font-size: 18px;
     }
 
     .header-logged {
-        width: auto;
-        margin-right: 0px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        margin-right: 30px;
     }
 
     .header-user {
-        width: 132px;
-        height: 75px;
-        margin-left: 31px;
-        border-radius: 5px;
-        background: rgba(217, 217, 217, 0.3);
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+        height: 100px;
+        margin-right: 10px;
         justify-content: space-around;
-        font-size: 8px;
-        font-weight: 400;
-        line-height: 9.68px;
-        text-align: left;
+        font-size: 18px;
     }
 
-    .limit-used {
-        width: auto;
-        height: auto;
-        margin-left: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: right;
-        color: rgba(0, 0, 0, 0.4);
-    }
-    
     .available {
-        width: auto;
-        height: auto;
-        margin-top: 0px;
-        margin-left: 10px;
-        display: flex;
+        margin: 0px 0px 14px 8px;
         flex-direction: column;
-        align-items: flex-start;
-        justify-content: right;
-        color: rgba(0, 0, 0, 0.4);
+        align-items: start;
     }
 
-    .limit-used span {
-        margin-left: 0px;
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 16.94px;
-        text-align: right;
-        color: #000000;
-    }
-    
     .available span {
-        margin-left: 0px;
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 16.94px;
-        text-align: right;
+        margin: 0px 5px 0px 0px;
+        font-size: 16px;
+        text-align: left;
         color: #D20A11;
     }
 

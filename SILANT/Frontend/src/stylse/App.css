@@ -4,22 +4,22 @@
 }
 
 @font-face {
-    src: url('../stylse/fonts/PT-Astra-Sans_Bold-Italic.ttf');
+    src: url('../stylse/fonts/PT-Astra-Sans_Bold-Italic.ttf') format('truetype');
     font-family: PT-Astra-Sans_Bold-Italic;
 }
 
 @font-face {
-    src: url('../stylse/fonts/PT-Astra-Sans_Bold.ttf');
+    src: url('../stylse/fonts/PT-Astra-Sans_Bold.ttf') format('truetype');
     font-family: PT-Astra-Sans_Bold;
 }
 
 @font-face {
-    src: url('../stylse/fonts/PT-Astra-Sans_Italic.ttf');
+    src: url('../stylse/fonts/PT-Astra-Sans_Italic.ttf') format('truetype');
     font-family: PT-Astra-Sans_Italic;
 }
 
 @font-face {
-    src: url('../stylse/fonts/PT-Astra-Sans_Regular.ttf');
+    src: url('../stylse/fonts/PT-Astra-Sans_Regular.ttf') format('truetype');
     font-family: PT-Astra-Sans_Regular;
 }
 

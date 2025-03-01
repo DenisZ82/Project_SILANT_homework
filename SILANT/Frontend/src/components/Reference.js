@@ -8,7 +8,7 @@ import "../stylse/Reference.css"
 function Reference() {
     const {id} = useParams();
     const [reference , setReference] = useState([]);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const dataReference = async () => {
         try {
@@ -24,17 +24,18 @@ function Reference() {
         dataReference();
     }, [id])
 
+    const back = () => {
+        navigate(-1);
+    };
+
     return (
         <div className="reference">
             <h1 className="reference-h1">Справочники</h1>
             <h2 className="reference-h2">{`${reference.reference_type}: ${reference.name}`}</h2>
+            <button className="reference-but" onClick={back}>Вернуться к таблице</button>
             <div className="reference-content"><p>{reference.content}</p></div>
         </div>
-
     );
-
-
-
 }
 
 export default Reference;

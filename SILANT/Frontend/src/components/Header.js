@@ -11,7 +11,7 @@ import DeviceDetect from "./DeviceDetect.js";
 import "../stylse/Header.css";
 import header_logo from "../images/logo.svg"
 import rotation_animate from "../images/rotation_animate.svg"
-import mobile_menu from "../images/mobile_menu.svg"
+// import mobile_menu from "../images/mobile_menu.svg"
 import telegram_dark_blue from "../images/telegram_dark_blue.svg"
 
 
@@ -66,24 +66,32 @@ function Header() {
     return (
         <header className="header">
             <div className="header-title">
-            <a href="/"><img className="header-img" src={header_logo} alt="Логотип"/></a>
-            <div className="title-txt">Электронная сервисная книжка "Мой Силант"</div>
+                <a href="/"><img className="header-img" src={header_logo} alt="Логотип"/></a>
+                <div className="title-txt">Электронная сервисная книжка "Мой Силант"</div>
+                { isMobile || isMobile360 ? 
+                    <div className="header-contact">
+                        <div>+7-8352-20-12-09, <a href="https://t.me/Silant_chzsa">Telegram</a>
+                        <a href="https://t.me/Silant_chzsa"><img src={telegram_dark_blue} alt="Телеграм"/></a>
+                        </div>
+                    </div> : 
+                    null
+                }
             </div>
-            { !isMobile ? 
-            <div className="header-contact">
-                <div>+7-8352-20-12-09, <a href="https://t.me/Silant_chzsa">Telegram</a></div>
-                <a href="https://t.me/Silant_chzsa"><img src={telegram_dark_blue} alt="Телеграм"/></a>
-            </div> : 
-            <div></div>
+            { !isMobile && !isMobile360 ? 
+                <div className="header-contact">
+                    <div>+7-8352-20-12-09, <a href="https://t.me/Silant_chzsa">Telegram</a>
+                        <a href="https://t.me/Silant_chzsa"><img src={telegram_dark_blue} alt="Телеграм"/></a>
+                    </div>
+                </div> : 
+                null
             }
 
             { !store.isAuth ? 
-                (!isMobile ?
                 (<div className="header-auth">
                     <Link to={"/auth"}>
                         <button className="header-but">Авторизация</button>
                     </Link>
-                </div>) : <img className="mobile-menu" src={mobile_menu} />) : 
+                </div>) : 
                 <div className="header-logged">
                     <div className="header-user">
                         { loading ? 
@@ -104,16 +112,12 @@ function Header() {
                             </>
                         }
                     </div>
-                    { !isMobile ? 
-                    (<div className="header-username">
+                    <div className="header-username">
                         <div className="username"><span>{user.username}</span></div>
-                            {/* <div className="header-username">User id: {store.isUser.pk}</div> */}
                             <Link to={'/'} onClick={() => store.logout()} >
                                 <button className="header-logout">Выход</button>
                             </Link>
-                    </div>) : 
-                    <img className="mobile-menu" src={mobile_menu} />
-                    }
+                    </div>
                 </div>
             }
         </header>
