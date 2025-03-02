@@ -5,7 +5,7 @@
 
 .reference {
     width: 70%;
-    height: 88vh;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     margin-top: 110px;
@@ -17,6 +17,7 @@
 
 .reference-h1 {
     margin-top: 20px;
+    margin-bottom: 0px;
     font-size: 2.3rem;
     font-family: PT-Astra-Sans_Bold;
     color: #163E6C;
@@ -56,23 +57,60 @@
 
 @media (max-width: 768px) {
     .reference {
-        height: 80%;
+        width: 80%;
+        /* min-height: 80vh; */
         margin-top: 130px;
+    }
+
+    .reference-h1 {
+        margin-top: 15px;
+        font-size: 1.9rem;
+
+    }
+    
+    .reference-h2 {
+        margin-top: 10px;
+        margin-bottom: 15px;
+        font-size: 1.7rem;
     }
 
     .reference-content {
         font-size: 18px;
     }
 
-    .reference-h1 {
-        margin-bottom: 0px;
-        font-size: 1.9rem;
-
+    .reference-but {
+        width: 190px;
+        height: 40px;
+        font-size: 18px;
     }
-    
+}
+
+@media (max-width: 375px) {
+    .reference {
+        width: 95%;
+        /* height: 100vh; */
+        margin-top: 150px;
+    }
+
+    .reference-h1 {
+        margin-top: 5px;
+        font-size: 1.5rem;
+    }
+
     .reference-h2 {
-        margin-top: 15px;
-        margin-bottom: 15px;
-        font-size: 1.7rem;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+    }
+
+    .reference-content {
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    .reference-but {
+        width: 150px;
+        height: 30px;
+        font-size: 14px;
     }
 }

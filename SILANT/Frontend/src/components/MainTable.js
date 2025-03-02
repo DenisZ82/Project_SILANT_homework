@@ -120,21 +120,22 @@ function MainTable() {
                 data={machines} 
                 columns={columns} 
                 initialState={{ 
+                    // sorting - сортировка указанного поля по умолчанию
                     sorting: [{ id: 'machine_model.name', desc: false }, ],
                     showColumnFilters: true,
                     showGlobalFilter: true,
                 }}
                 localization={MRT_Localization_RU}
-                positionGlobalFilter="left"
+                positionGlobalFilter="right"
                 globalFilterFn="contains"
                 muiSearchTextFieldProps={{
                     placeholder: `Поисковый запрос`,
-                    sx: { minWidth: '150px' },
+                    sx: { minWidth: '200px' },
                     variant: 'outlined',
                 }}
                 enableStickyHeader
                 muiTableContainerProps={{ sx: { maxHeight: '600px' } }}
-                muiTableHeadCellProps={{ sx: {fontSize:fontSizeTable,}, }}
+                muiTableHeadCellProps={{ sx: {fontSize: fontSizeTable,}, }}
                 muiTableBodyCellProps={{
                     sx: {fontSize: fontSizeTable, borderRight:'1px solid #163E6C',},
                 }}

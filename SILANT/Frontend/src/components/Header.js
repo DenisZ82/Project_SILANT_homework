@@ -20,7 +20,7 @@ function Header() {
     const [user, setUser] = useState({});
     const [errorDataUser, setErrorDataUser] = useState(false);
     const [loading, setLoading] = useState(true);
-    const { isMobile, isMobile360 } = DeviceDetect();
+    const { isMobile, isMobile375 } = DeviceDetect();
 
     useEffect(() => {
         if (store.isAuth) {
@@ -51,8 +51,8 @@ function Header() {
 
     useEffect (() => {
         console.log('isMobile', isMobile)
-        console.log('isMobile360', isMobile360)
-    }, [isMobile, isMobile360]);
+        console.log('isMobile375', isMobile375)
+    }, [isMobile, isMobile375]);
 
     useEffect(() => {
         if (store.isAuth) {
@@ -68,7 +68,7 @@ function Header() {
             <div className="header-title">
                 <a href="/"><img className="header-img" src={header_logo} alt="Логотип"/></a>
                 <div className="title-txt">Электронная сервисная книжка "Мой Силант"</div>
-                { isMobile || isMobile360 ? 
+                { isMobile || isMobile375 ? 
                     <div className="header-contact">
                         <div>+7-8352-20-12-09, <a href="https://t.me/Silant_chzsa">Telegram</a>
                         <a href="https://t.me/Silant_chzsa"><img src={telegram_dark_blue} alt="Телеграм"/></a>
@@ -77,7 +77,7 @@ function Header() {
                     null
                 }
             </div>
-            { !isMobile && !isMobile360 ? 
+            { !isMobile && !isMobile375 ? 
                 <div className="header-contact">
                     <div>+7-8352-20-12-09, <a href="https://t.me/Silant_chzsa">Telegram</a>
                         <a href="https://t.me/Silant_chzsa"><img src={telegram_dark_blue} alt="Телеграм"/></a>

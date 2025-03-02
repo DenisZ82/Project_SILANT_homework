@@ -175,7 +175,7 @@ p {
     background: #D20A11;
     font-family: PT-Astra-Sans_Bold;
     font-size: 16px;
-    line-height: 16.94px;
+    line-height: 16px;
     cursor: pointer;
 }
 
@@ -219,9 +219,9 @@ p {
         margin-left: 30px;
     }
 
-    .header-img {
+    /* .header-img {
         width: 180px;
-    }
+    } */
 
     .header-contact img {
         margin-left: 3px;
@@ -247,6 +247,8 @@ p {
 
     .header-user {
         height: 100px;
+        min-width: 160px;
+        max-width: 200px;
         margin-right: 10px;
         justify-content: space-around;
         font-size: 18px;
@@ -263,6 +265,115 @@ p {
         font-size: 16px;
         text-align: left;
         color: #D20A11;
+    }
+
+    .rotation_small {
+        margin-left: 54px;
+    }
+}
+
+@media (max-width: 375px) {
+
+    .header {
+        max-width: 375px;
+        margin: 0px auto 0px auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 1000;
+        height: 150px;
+        gap: 0px;
+        background: #EBE6D6;
+        line-height: 1;
+    }
+
+    .header-title {
+        max-height: 140px;
+        min-height: 120px;
+        margin-left: 5px;
+        justify-content: space-around;
+    }
+
+    .header-img {
+        width: 120px;
+    }
+
+    .title-txt {
+        font-size: 16px;
+    }
+
+    .header-contact {
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    .header-contact img {
+        margin-left: 3px;
+        margin-bottom: 0px;
+        width: 20px;
+    }
+
+    .header-auth {
+        width: 100px ;
+        height: 30px;
+        margin-right: 5px;
+    }
+
+    .header-but {
+        width: 100px;
+        height: 30px;
+        font-size: 14px;
+    }
+
+    .header-logged {
+        flex-direction: column-reverse;
+        margin-right: 5px;
+    }
+
+    .header-user {
+        min-height: 90px;
+        min-width: 160px;
+        max-width: 180px;
+        margin-top: 5px;
+        margin-right: 0px;
+        justify-content: space-around;
+        font-size: 16px;
+    }
+
+    .available {
+        margin: 0px 0px 0px 8px;
+    }
+
+    .header-user > .available:last-child {
+        margin: 8px 0px 0px 8px;
+        flex-direction: row;
+    }
+
+    .available span {
+        margin: 0px 5px 0px 0px;
+        font-size: 14px;
+    }
+
+    .header-username {
+        height: auto;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .header-username span {
+        margin-right: 5px;
+        font-size: 16px;
+    }
+
+    .header-logout {
+        width: 48px;
+        height: 25px;
+        font-size: 12px;
     }
 
     .rotation_small {

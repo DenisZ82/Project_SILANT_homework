@@ -54,6 +54,7 @@
 @media (max-width: 768px) {
     .footer {
         height: 180px;
+        margin-top: 30px;
     }
 
     .footer-img {
@@ -73,5 +74,47 @@
 
     .footer-contact img {
         width: 20px;
+    }
+}
+
+@media (max-width: 375px) {
+    .footer {
+        height: 150px;
+        margin-top: 20px;
+    }
+
+    .footer-375 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 120px;
+        margin-left: 5px;
+    }
+
+    .footer-img {
+        margin-left: 0px;
+        max-width: 180px;
+    }
+
+    .footer-info {
+        height: 70px;
+        margin-right: 5px;
+        align-items: end;
+    }
+
+    .footer-contact {
+        margin: 0px 0px 0px 0px;
+        justify-content: left;
+        font-size: 14px;
+    }
+
+    .footer-contact img {
+        width: 15px;
+    }
+
+    .footer-copyright {
+        font-size: 12px;
+        text-align: right;
+
     }
 }

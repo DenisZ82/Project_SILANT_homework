@@ -5,15 +5,19 @@ import { observer } from "mobx-react-lite";
 
 import { MaterialReactTable, useMaterialReactTable, } from 'material-react-table';
 import { MRT_Localization_RU } from 'material-react-table/locales/ru';
+import { ThemeProvider } from '@mui/material/styles';
 
 import { Context } from "../index.js";
 import { API_URL } from "../http/index_http.js";
+import DeviceDetect from "./DeviceDetect.js";
 
+import theme from "./Theme.js";
 import "../stylse/Main.css";
 
 function MainTableMaintenance() {
     const { store } = useContext(Context);
     const [maintenance, setMaintenance] = useState([]);
+    const { fontSizeTable } = DeviceDetect();
 
     // определение столбцов для библиотеки material-react-table
     const columns = useMemo(
@@ -106,6 +110,7 @@ function MainTableMaintenance() {
     return (
         <>
             <div className="material-react-table">
+            <ThemeProvider theme={theme}>
                 <MaterialReactTable 
                 data={maintenance} 
                 columns={columns} 
@@ -115,20 +120,21 @@ function MainTableMaintenance() {
                     showGlobalFilter: true,
                 }}
                 localization={MRT_Localization_RU}
-                positionGlobalFilter="left"
+                positionGlobalFilter="right"
                 globalFilterFn="contains"
                 muiSearchTextFieldProps={{
                     placeholder: `Поисковый запрос`,
-                    sx: { minWidth: '150px' },
+                    sx: { minWidth: '200px' },
                     variant: 'outlined',
                 }}
                 enableStickyHeader
                 muiTableContainerProps={{ sx: { maxHeight: '600px' } }}
-                muiTableHeadCellProps={{ sx: {fontSize:'17,5px',}, }}
+                muiTableHeadCellProps={{ sx: {fontSize: fontSizeTable,}, }}
                 muiTableBodyCellProps={{
-                    sx: {fontSize:'17,5px', borderRight:'1px solid #163E6C',},
+                    sx: {fontSize: fontSizeTable, borderRight:'1px solid #163E6C',},
                 }}
                 />
+            </ThemeProvider>
             </div>
         </>
     );
