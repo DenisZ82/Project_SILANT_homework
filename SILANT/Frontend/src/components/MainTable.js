@@ -7,7 +7,7 @@ import { MaterialReactTable, } from 'material-react-table';
 import { MRT_Localization_RU } from 'material-react-table/locales/ru';
 import { ThemeProvider } from '@mui/material/styles';
 
-// import { Context } from "../index.js";
+import { Context } from "../index.js";
 import { API_URL } from "../http/index_http.js";
 import DeviceDetect from "./DeviceDetect.js";
 
@@ -15,7 +15,7 @@ import theme from "./Theme.js";
 import "../stylse/Main.css";
 
 function MainTable() {
-    // const { store } = useContext(Context);
+    const { store } = useContext(Context);
     const [machines, setMachines] = useState([]);
     const { fontSizeTable } = DeviceDetect();
 
@@ -106,7 +106,7 @@ function MainTable() {
     }, []);
 
     return (
-        <div className="main-table">
+        <div className={!store.isAuth ? "main-table" : "main-table-isAuth"}>
             <h1 className="main-table-title">
                 Проверьте комплектацию и технические характеристики техники Силант.
             </h1>

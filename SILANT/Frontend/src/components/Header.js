@@ -49,10 +49,10 @@ function Header() {
         }
     }
 
-    useEffect (() => {
-        console.log('isMobile', isMobile)
-        console.log('isMobile375', isMobile375)
-    }, [isMobile, isMobile375]);
+    // useEffect (() => {
+    //     console.log('isMobile', isMobile)
+    //     console.log('isMobile375', isMobile375)
+    // }, [isMobile, isMobile375]);
 
     useEffect(() => {
         if (store.isAuth) {
