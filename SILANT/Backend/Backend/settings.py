@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
-    # 'rest_framework_simplejwt.token_blacklist',
     'dj_rest_auth',
     'allauth',
     'allauth.account',
@@ -144,13 +143,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 APPEND_SLASH = False
 
-# CSRF_COOKIE_HTTPONLY = False
-# CSRF_COOKIE_SECURE = False
-# CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
-# SESSION_COOKIE_SAMESITE = 'Lax'
-# SESSION_COOKIE_SECURE = True
-# SESSION_COOKIE_HTTPONLY = False
-
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'none'
@@ -188,15 +180,6 @@ SIMPLE_JWT = {
     'UPDATE_LAST_LOGIN': True,
     'SIGNING_KEY': SECRET_KEY,
     'ALGORITHM': 'HS512',
-
-    # 'AUTH_HEADER_TYPES': ('Bearer',),
-    # 'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
-    # 'USER_ID_FIELD': 'id',
-    # 'USER_ID_CLAIM': 'user_id',
-
-    # 'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
-    # 'SLIDING_TOKEN_LIFETIME': timedelta(days=1),
-    # 'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=7),
 }
 
 # настройки dj_rest_auth

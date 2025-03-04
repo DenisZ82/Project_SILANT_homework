@@ -1,5 +1,7 @@
 from django.contrib.auth.models import Group
 from rest_framework import serializers
+from rest_framework import permissions
+from fields_permissions.mixins import FieldPermissionMixin
 from dj_rest_auth.serializers import UserDetailsSerializer
 
 from .models import *
@@ -58,7 +60,7 @@ class CustomUserDetailsSerializer(UserDetailsSerializer):
         service = ServiceCompany.objects.filter(user=obj).first()  # Ищем объект ServiceCompany по user
         return service.name_company if service else None  # Если найден - возвращаем, иначе None
 
-    #  Собираем все сервисные компании связанные с машинами клиента и передаем фронту
+    #  Собираем все сервисные компании связанные с машинами клиента
     def get_assigned_service(self, obj):
         assigned_service = set()
         for machine in Machine.objects.filter(client__user=obj):
@@ -73,7 +75,7 @@ class ReferenceBooksSerializer(serializers.ModelSerializer):
         fields = ['id', 'reference_type', 'name', 'content']
 
 
-class MachineSerializer(serializers.ModelSerializer):
+class MachineSerializer(FieldPermissionMixin, serializers.ModelSerializer):
     machine_model = ReferenceBooksSerializer()
     engine_model = ReferenceBooksSerializer()
     transmission_model = ReferenceBooksSerializer()
@@ -111,6 +113,12 @@ class MachineSerializer(serializers.ModelSerializer):
                             'guiding_bridge_model',
                             'client',
                             'service_company']
+
+        show_only_for = {
+            'fields': ('client', 'service_company', 'consignee', 'shipping_address', 'delivery_agreement',
+                       'date_shipment_factory', 'equipment'),
+            'permission_classes': (permissions.IsAuthenticatedOrReadOnly,)
+        }
 
 
 class TechMaintenanceSerializer(serializers.ModelSerializer):

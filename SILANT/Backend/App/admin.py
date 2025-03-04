@@ -3,9 +3,9 @@ from .models import *
 
 
 class MachineAdmin(admin.ModelAdmin):
-    list_display = ('id', 'factory_number', 'machine_model__name', 'engine_model__name', 'engine_factory_num',
-                    'transmission_model__name', 'factory_num_transmission', 'drive_axle_model__name',
-                    'factory_num_drive_axle', 'guiding_bridge_model__name', 'factory_num_guiding_bridge',
+    list_display = ('id', 'factory_number', 'machine_model', 'engine_model', 'engine_factory_num',
+                    'transmission_model', 'factory_num_transmission', 'drive_axle_model',
+                    'factory_num_drive_axle', 'guiding_bridge_model', 'factory_num_guiding_bridge',
                     'delivery_agreement', 'date_shipment_factory', 'consignee', 'shipping_address', 'equipment',
                     'client', 'service_company')
 
@@ -14,12 +14,12 @@ class MachineAdmin(admin.ModelAdmin):
 
 
 class TechMaintenanceAdmin(admin.ModelAdmin):
-    list_display = ('id', 'machine', 'type_maintenance__name', 'date_maintenance', 'operating_time', 'order_number',
-                    'order_date', 'organization_maintenance__name', 'service_company')
+    list_display = ('id', 'machine', 'type_maintenance', 'date_maintenance', 'operating_time', 'order_number',
+                    'order_date', 'organization_maintenance', 'service_company')
 
 
 class ComplaintsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'machine', 'date_machine_failure', 'operating_time', 'machine_failure_node__name',
+    list_display = ('id', 'machine', 'date_machine_failure', 'operating_time', 'machine_failure_node',
                     'date_restoration', 'machine_downtime')
 
 
