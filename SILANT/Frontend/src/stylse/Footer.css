@@ -51,6 +51,8 @@
     font-weight: 400;
 }
 
+/* ****************************** */
+
 @media (max-width: 768px) {
     .footer {
         height: 180px;
@@ -76,6 +78,8 @@
         width: 20px;
     }
 }
+
+/* ****************************** */
 
 @media (max-width: 375px) {
     .footer {
@@ -115,6 +119,5 @@
     .footer-copyright {
         font-size: 12px;
         text-align: right;
-
     }
 }

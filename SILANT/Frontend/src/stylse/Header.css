@@ -91,7 +91,6 @@ p {
     background: #ececec;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     justify-content: center;
     font-size: 18px;
     text-align: left;
@@ -151,19 +150,6 @@ p {
     text-align: right;
 }
 
-/* .header-logout {
-    color: #D20A11;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 12.1px;
-    letter-spacing: 0.01em;
-    text-align: left;
-    opacity: 90%;
-    text-align: right;
-    text-decoration: none;
-    cursor: pointer;
-} */
-
 .header-logout {
     width: 57px;
     height: 30px;
@@ -219,10 +205,6 @@ p {
         margin-left: 30px;
     }
 
-    /* .header-img {
-        width: 180px;
-    } */
-
     .header-contact img {
         margin-left: 3px;
         margin-bottom: 0px;
@@ -271,6 +253,8 @@ p {
         margin-left: 54px;
     }
 }
+
+/* ****************************** */
 
 @media (max-width: 375px) {
 

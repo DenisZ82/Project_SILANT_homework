@@ -1,5 +1,4 @@
 import { createTheme } from '@mui/material/styles';
-// import "../stylse/Main.css";
 
 const theme = createTheme({
     typography: {

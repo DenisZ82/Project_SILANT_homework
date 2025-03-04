@@ -1,9 +1,4 @@
 @font-face {
-    src: url('../stylse/fonts/Inter-Regular.otf');
-    font-family: Inter-Regular;
-}
-
-@font-face {
     src: url('../stylse/fonts/PT-Astra-Sans_Bold-Italic.ttf') format('truetype');
     font-family: PT-Astra-Sans_Bold-Italic;
 }
