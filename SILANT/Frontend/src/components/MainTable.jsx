@@ -143,6 +143,7 @@ function MainTable() {
                     // sorting - сортировка указанного поля по умолчанию
                     sorting: [{ id: 'machine_model.name', desc: false }, ],
                     columnPinning: { left: ['machine_model.name'] },
+                    pagination:{ pageSize: 50, },
                     showColumnFilters: true,
                     showGlobalFilter: true,
                 }}

@@ -134,7 +134,8 @@ function MainTableComplaints() {
                 columns={columns} 
                 initialState={{ 
                     sorting: [{ id: 'date_machine_failure', desc: false }, ],
-                    columnPinning: { left: ['machine_factory_number'] }, 
+                    columnPinning: { left: ['machine_factory_number'] },
+                    pagination:{ pageSize: 50, },
                     showColumnFilters: true,
                     showGlobalFilter: true,
                 }}

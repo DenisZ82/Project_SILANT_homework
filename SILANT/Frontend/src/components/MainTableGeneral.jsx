@@ -202,6 +202,7 @@ function MainTableGeneral() {
                 initialState={{ 
                     sorting: [{ id: 'date_shipment_factory', desc: false }, ],
                     columnPinning: { left: ['factory_number'] },
+                    pagination:{ pageSize: 50, },
                     showColumnFilters: true,
                     showGlobalFilter: true,
                 }}
